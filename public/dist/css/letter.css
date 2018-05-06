@@ -1,0 +1,113 @@
+body {
+  background: rgb(204,204,204); 
+}
+page[size="A4"] {
+  
+  background: white;
+  width: 21cm;
+  height: 29.7cm;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 0.5cm;
+  box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+}
+@media print {
+  body, page[size="A4"] {
+    margin: 0;
+    box-shadow: 0;
+  }
+}
+
+.header-cart{
+  margin-top: 10%;
+  float: left !important;
+  width: 100%;
+}
+.body-cart{
+  margin-top: 3%;
+  float: left !important;
+  width: 100%;
+  text-align: justify;
+  text-justify: inter-word;
+}
+.movistar{
+  float: right !important;
+}
+
+.canal{
+  float: left !important;
+  
+}
+
+.canal h5{
+  margin-top: 25%; 
+  font-size: 40px;
+  font-family: Arial;
+}
+
+.sub-header{
+  width: 100%;
+  float: right !important;
+  
+  
+}
+.sub-header-body{
+  margin-top: 6%;
+  float: left !important;
+  width: 100%;
+}
+.sub-header-body h5{
+font-size: 15px;  
+}
+
+.firma{
+  width: 100%;
+  
+  float: left !important;
+  text-align: center;
+}
+.nombre-firma{
+  width: 100%;
+  text-align:center;
+  float: left !important;
+}
+.footer-cart{
+  margin-top: 5%;
+  width: 100%;
+  float: left !important;
+}
+.footer-cart p{
+  font-size: 11px;
+}
+#txt-parrafo1,#txt-parrafo2,#txt-parrafo3{
+    width: 92%;
+    resize: none;
+    overflow: hidden;
+    min-height: 50px;
+    max-height: 100px;
+}
+
+.tools-parrafo{
+  /*margin-top: -80px;
+  margin-right: -20px;*/
+  cursor: pointer;
+  
+}
+
+.parrafo-espacio{
+  padding-bottom: 1em;
+}
+
+.documento {
+  background: white;
+  box-shadow: 0px 0px 5px 1px #000c;
+}
+
+@media screen and (min-width: 1200px) {
+    .documento {
+      width: 842px;
+      transform: translate(-50%, 0);
+      margin-left: 50%;
+    }
+}
+

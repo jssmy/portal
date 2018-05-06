@@ -1,0 +1,49 @@
+
+.canal{
+  float: left !important;  
+}
+
+.canal h5{
+  font-size: 3em;
+  margin: 0;
+  margin-top: 0.5em; 
+}
+
+.movistar{
+  float: right !important;  
+}
+
+.sub-header{
+  padding-top: 8em;
+}
+
+.dub-header .sub-header-body h5{
+  margin: 0;
+}
+
+
+.footer-cart{
+  margin-top: 5%;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+.footer-cart p{
+  font-size: 10px;
+}
+
+html{
+  color: #333;
+  font-size: 12px;
+  font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+.firma{
+  width: 100%;
+  text-align: center;
+}
+.nombre-firma{
+  width: 100%;
+  text-align:center;
+}
+
