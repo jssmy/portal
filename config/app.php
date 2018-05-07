@@ -48,7 +48,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         
         ///pdf
-        Barryvdh\DomPDF\ServiceProvider::class,
+         Codedge\Fpdf\FpdfServiceProvider::class, // [1]
 
     ],
     'aliases' => [
@@ -84,7 +84,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         ///pdf
-        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Fpdf' => Codedge\Fpdf\Facades\Fpdf::class, // [2]
 
     ],
 

@@ -21,18 +21,18 @@ class UserSeeder extends Seeder
             'type'=>'admin',        
             ]);
         User::create([
-            'username'=>'BERTA',
+            'username'=>'usuario1',
             'name'=>'Berta',
             'email'=>'bertas@gmail.com',
             'password'=>bcrypt('123456789'),
-            'type'=>'liqui',        
+            'type'=>'umasivo',        
             ]);
         User::create([
-            'username'=>'ALEX',
+            'username'=>'usuario2',
             'name'=>'Alex',
             'email'=>'alex@gmail.com',
             'password'=>bcrypt('123456789'),
-            'type'=>'liqui',        
+            'type'=>'uindividual',        
             ]);
     
     }

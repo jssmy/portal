@@ -19,6 +19,7 @@ class ReclamoSimpleController extends Controller
         
         
         $reclamos = ReclamoSimple::paginate(15);
+        $resultados = Resultado::all();
         foreach($reclamos as $reclamo)
         {
             $hoy= date("y-m-d");
@@ -31,17 +32,14 @@ class ReclamoSimpleController extends Controller
                 if($fec_limit->days<=3)
                 $reclamo->label='warning';
             }
-            $reclamo->limite=$fec_limit->days;
-            
-            
+            $reclamo->limite=$fec_limit->days;   
         }
         $bandejas = Bandeja::where('user_id',Auth::user()->id)->get();
         //dd($reclamos);
         return view('reclamos.index')
         ->with('reclamos',$reclamos)
-        ->with('bandejas',$bandejas);
-        
-        
+        ->with('bandejas',$bandejas)
+        ->with('resultados',$resultados);
     }
     
     public function make_letter($numero)
@@ -68,13 +66,17 @@ class ReclamoSimpleController extends Controller
         "Noviembre",
         "Diciembre");
         $reclamo->respuesta= $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
-        $modelos=\DB::table('modelos_carta')->where('user_id',Auth::user()->id)->get();
+        $modelos=\DB::table('modelos_cartas')->where('user_id',Auth::user()->id)->get();
         //dd($modelos);
         $resultados=Resultado::all();
         return view('reclamos.create')
         ->with('reclamo',$reclamo)
         ->with('modelos',$modelos)
-        ->with('resultados',$resultados);
+        ->with('resultados',$resultados)
+        ->with('disabled_t','oks')
+        ->with('show_s','oks')
+        ->with('show_obs','oks');
+
     }
     
     public function convert_pdf(){
@@ -86,11 +88,16 @@ class ReclamoSimpleController extends Controller
     
     public function details($reclamo)
     {
-            $reclamo =  ReclamoSimple::where('reclamo_numero',$reclamo)->first();    
-            $bandejas = Bandeja::where('user_id',Auth::user()->id)->get();
+            $reclamo =  ReclamoSimple::where('reclamo_numero',$reclamo)
+            ->first();    
+            $bandejas = Bandeja::where('user_id',Auth::user()->id)
+            ->get();
+            $resultados = Resultado::all();
             return view('reclamos.details')
             ->with('reclamo',$reclamo)
-            ->with('bandejas',$bandejas);
+            ->with('bandejas',$bandejas)
+            ->with('resultados',$resultados);
+            
     }
     
     

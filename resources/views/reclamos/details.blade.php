@@ -1,15 +1,21 @@
-@extends('layouts.main')
+@extends('theme.main')
     @section('title','Detalle'.$reclamo->reclamo_numero)
-    @section('header-message')
-        <h2 style="margin-top:0;">Detalles del reclamo {{ $reclamo->reclamo_numero }}</h2> 
+    @section('sidebar-menu')
+        @include('theme.partial.sidebar-menu')
     @endsection
-    
-   @section('sidebar-menu')
-        @include('layouts.partial.main.sidebar-menu')
+
+      @section('breadcrumb')
+    	@include('theme.partial.breadcrumb',[
+    		'route'=>'/reclamos',
+    		'root'=>'Mis asignaciones',
+    		'icon'=>'folder',
+    		'sub'=>'Detalles'
+    	])
     @endsection
+
     
     @section('container')
-       @include('layouts.partial.reclamos.details')
+       @include('reclamos.partial.details')
     @endsection
     
     

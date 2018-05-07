@@ -1,17 +1,21 @@
-@extends('layouts.main')
-    @section('title','Reclamos')
-    @section('header-message')
-        <h2 style="margin-top:0;">Reclamos asignados</h2> 
-    @endsection
-    
+@extends('theme.main')
+   @section('title','Reclamos')
    @section('sidebar-menu')
-        @include('layouts.partial.main.sidebar-menu')
+        @include('theme.partial.sidebar-menu')
+   @endsection
+
+   @section('breadcrumb')
+    	@include('theme.partial.breadcrumb',[
+    		'route'=>'/reclamos',
+    		'root'=>'Mis signaciones',
+    		'icon'=>'folder',
+    		'sub'=>''
+    	])
     @endsection
-    
-    @section('container')
-       
-         @include('layouts.partial.reclamos.index')
-       
+
+
+   @section('container')
+         @include('reclamos.partial.index')
     @endsection
     
     

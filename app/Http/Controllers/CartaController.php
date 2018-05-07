@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\ReclamoSimple;
 use App\Carta;
-use PDF;
+
 use Spipu\Html2Pdf\Html2Pdf;
 use Spipu\Html2Pdf\Exception\Html2PdfException;
 use Spipu\Html2Pdf\Exception\ExceptionFormatter;
@@ -45,30 +45,25 @@ class CartaController extends Controller
             'resultado_id'=>$data['resultado']
             ]);
             
-            PDF::setOptions(['debugCss' => true]);
+            /*PDF::setOptions(['debugCss' => true]);
             $pdf = PDF::loadView('carta.create',['carta'=>$carta]);
-            $reclamo->carta_id=$carta->id;
+            $reclamo->carta_id=$carta->id;*/
             
-            $reclamo->save();
-            return $pdf->download( md5($id_reclamo) .'.pdf');
+            //$reclamo->save();
+            return redirect()->route('reclamos.index');
             
     }
     
     function generate_pdf_fija($carta,$name){
-        
-        //PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif', 'debugCss' => true]);
         $pdf = PDF::loadView('carta.create',['carta'=>$carta]);
-        //$pdf::setOptions(['debugCss' => true]);
-        //$pdf->set_base_path(URL::to('/'));
         return $pdf->stream();
     }
     
     
     
     public function show(){
-        
         return redirect()->route('reclamos.index');
-        //return view('carta.show');
+        
     }
     
 }

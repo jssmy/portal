@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Trazabilidad;
 use Illuminate\Support\Facades\Auth;
 use App\Bandeja;
+use App\Resultado;
 class HomeController extends Controller
 {
     /**
@@ -31,9 +31,10 @@ class HomeController extends Controller
     
     public function board(){
         $bandejas = Bandeja::where('user_id',Auth::user()->id)->get();
-        return view('board')
-        ->with('bandejas',$bandejas);
-        
+        $resultados=Resultado::all();
+        return view('theme.board')
+        ->with('bandejas',$bandejas)
+        ->with('resultados',$resultados);
     }
     
     

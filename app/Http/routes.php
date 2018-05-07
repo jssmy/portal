@@ -115,7 +115,7 @@ Route::post('guardar-modelo',[
     'as'=>'modelo.store'
 ]);
 
-Route::post('modificar-modelo',[
+Route::post('modificar-modelo/{id_modelo}',[
     'uses'=>'ModeloCartaController@update',
     'as'=>'modelo.update'
 ]); 

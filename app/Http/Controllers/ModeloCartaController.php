@@ -28,6 +28,16 @@ class ModeloCartaController extends Controller
             'cant_parrafo'=>'required'
         ]);
     }
+
+    protected function validator_update(array $data)
+    {
+        return Validator::make($data, [
+            'nombre' => 'required|max:255',
+            'txt-inicio' => 'required',
+            'txt-respuesta'=>'required',
+            'cant_parrafo'=>'required'
+        ]);
+    }
     
     public function index(){
         
@@ -37,18 +47,19 @@ class ModeloCartaController extends Controller
           }
           
           $bandejas = Bandeja::where('user_id',Auth::user()->id)->paginate(15);
-          
+          $resultados = Resultado::all();
           //dd($modelos);
          //dd(Auth::user());
-         return view('modelo-carta.index')
+         return view('modelos.index')
          ->with('modelos',$modelos)
-         ->with('bandejas',$bandejas);   
+         ->with('theme.board',$bandejas)
+         ->with('resultados',$resultados);   
         
     }
     
     public function create(){
         $resultados = Resultado::all();
-        return view('modelo-carta.create')
+        return view('modelos.create')
         ->with('resultados',$resultados);
     }
     
@@ -56,10 +67,13 @@ class ModeloCartaController extends Controller
         
         $modelo= ModeloCarta::find($numero);
         $bandejas = Bandeja::where('user_id',Auth::user()->id)->get();
-        $modelo->resultado_;
-        return view('modelo-carta.edit')
+        $resultados = Resultado::all();
+        $modelo->resultado;
+        //dd($modelo);
+        return view('modelos.edit')
         ->with('modelo',$modelo)
-        ->with('bandejas',$bandejas);
+        ->with('bandejas',$bandejas)
+        ->with('resultados',$resultados);
     }
     
     public function show($numero){
@@ -73,7 +87,23 @@ class ModeloCartaController extends Controller
         
     }
     
-    public function update(Request $request){}
+    public function update(Request $request,$id_modelo){
+        $data = $request->all();
+        $this->validator_update($data);
+        $modelo = ModeloCarta::find($id_modelo);
+        $modelo->nombre=$data['nombre'];
+        $modelo->inicio=$data['txt-inicio'];
+        $modelo->parrafo1=$data['txt-parrafo1'];
+        $modelo->parrafo2=$data['txt-parrafo2'];
+        $modelo->parrafo3=$data['txt-parrafo3'];
+        $modelo->fin=$data['txt-respuesta'];
+        if(isset($data['cant_parrafo']))$modelo->cant_parrafo=$data['cant_parrafo'];
+        $modelo->save();
+        
+        return redirect()->route('modelo.index');
+
+
+    }
     
     public function store(Request $request){
         $data = $request->all();
@@ -81,11 +111,11 @@ class ModeloCartaController extends Controller
         $this->validator_store($data);
         $modelo= ModeloCarta::create([
             'nombre'=>$data['nombre'],
-            'saludo'=>$data['txt-inicio'],
+            'inicio'=>$data['txt-inicio'],
             'parrafo1'=>$data['txt-parrafo1'],
             'parrafo2'=>$data['txt-parrafo2'],
             'parrafo3'=>$data['txt-parrafo3'],
-            'resultado'=>$data['txt-respuesta'],
+            'fin'=>$data['txt-respuesta'],
             'cant_parrafo'=>$data['cant_parrafo'],
             'user_id'=>Auth::user()->id,
             'resultado_id'=>$data['resultado']

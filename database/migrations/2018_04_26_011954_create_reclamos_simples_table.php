@@ -42,7 +42,6 @@ class CreateReclamosSimplesTable extends Migration
             $table->boolean('excel')->nullable()->default(false);
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('carta_id')->unsigned()->nullable();
-            $table->integer('bandeja_id')->unsigned()->nullable();
             $table->timestamps();
             $table->foreign('user_id')
             ->references('id')

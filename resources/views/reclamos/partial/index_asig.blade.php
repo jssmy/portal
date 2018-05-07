@@ -75,7 +75,6 @@
                             <td><span class="label label-{{$reclamo->label}}">{{ $reclamo->limite }}</span></td>
                             <td>
                                 <a href="{{ route('reclamo.details',$reclamo->reclamo_numero) }}"><span class="fa fa-eye"></span> </a> 
-                                <a href="{{route('make.letter',$reclamo->reclamo_numero)}}"><span class="fa  fa-file-text"></span> </a>
                             </td>
                           </tr>
                           @endforeach

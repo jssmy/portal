@@ -23,7 +23,7 @@ class Carta{
     public function html(){
         $text='<page style="font-size: 16px;" >';
         //table heade
-       
+        $text.='<img src="firma.png">';
         //  end table head
         $text.='</page>';
         return $text;

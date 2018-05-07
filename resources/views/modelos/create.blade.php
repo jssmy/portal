@@ -1,28 +1,25 @@
-@extends('layouts.main')
-    @section('title','Crear modelo')
-    @section('links')
-        <link rel="stylesheet" href="/dist/css/letter.css" type="text/css" />
-        <style type="text/css">
-            .parrafo{
-                text-aling:justify;
-            }
-        </style>
-    @endsection
+@extends('theme.main')
+   @section('title','Crear modelo de carta')
    @section('sidebar-menu')
-       
-        @include('layouts.partial.main.sidebar-menu-modelo')
+        @include('theme.partial.sidebar-menu')
+   @endsection
+
+   @section('breadcrumb')
+        @include('theme.partial.breadcrumb',[
+            'route'=>'/modelos',
+            'root'=>'Modelos de carta',
+            'icon'=>'folder',
+            'sub'=>'Crea nuevo modelo'
+        ])
     @endsection
-    
+
+
     @section('container')
-       @include('layouts.partial.modelo-carta.create')
-       
-       
+         @include('modelos.partial.create')
     @endsection
-    
+
     @section('scripts')
-    <script type="text/javascript" src="/dist/js/cookie.js"></script>
-     <script >
-         		
+        <script >        
         //btn-create-modelo
             
             $(document).ready(function(){
@@ -76,13 +73,11 @@
                 
                 
             });
-        
-            
-        
-     </script>
-     
+        </script>
     @endsection
     
     
+
+
     
     

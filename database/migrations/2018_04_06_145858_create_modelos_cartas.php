@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModelosCartasTable extends Migration
+class CreateModelosCartas extends Migration
 {
     /**
      * Run the migrations.
@@ -12,20 +12,18 @@ class CreateModelosCartasTable extends Migration
      */
     public function up()
     {
-        Schema::create('modelos_carta', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('modelos_cartas', function (Blueprint $table) {
+          $table->increments('id');
             $table->string('nombre',100);
-            $table->text('saludo')->nullable();
+            $table->text('inicio')->nullable();
             $table->text('parrafo1')->nullable();
             $table->text('parrafo2')->nullable();
             $table->text('parrafo3')->nullable();
-            $table->text('resultado')->nullable();
-            $table->text('despido')->nullable();
+            $table->text('fin')->nullable();
             $table->integer('cant_parrafo')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('resultado_id')->unsigned();
             $table->timestamps();
-            
             
             $table->foreign('resultado_id')
             ->references('id')
@@ -44,6 +42,6 @@ class CreateModelosCartasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('modelos_carta');
+        Schema::drop('modelos_cartas');
     }
 }

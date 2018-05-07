@@ -15,16 +15,15 @@ class CreateBandejasTable extends Migration
         Schema::create('bandejas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre',100);
-            $table->string('descripcion')->nullable();
+            $table->string('filtar_por',100)->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->integer('modelo_carta_id')->unsigned()->nullable();
-            
+
             $table->foreign('user_id')
             ->references('id')->on('users');
-            
             $table->foreign('modelo_carta_id')
             ->references('id')
-            ->on('modelos_carta');
+            ->on('modelos_cartas');
             //$table->timestamps();
         });
     }
