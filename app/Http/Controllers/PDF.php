@@ -11,14 +11,14 @@ class PDF extends Fpdf
     public function __construct(){
         //$this->html=;
 
-        $this->dir_movistar=  __DIR__.'/movistar.png';
+        $this->dir_movistar='movistar.png';
     }
     
     function Header()
     {
         //$url=URL::to('/image/config/movistar.png');
         //$this->Image($this->dir_movistar,100,5,50);
-        $this->setSourceFile($this->dir_movistar);
+        //$this->setSourceFile($this->dir_movistar);
         //$this->Image($this->dir_movistar);
 
     }
