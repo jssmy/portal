@@ -7,11 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\ReclamoSimple;
 use App\Carta;
-
-use Spipu\Html2Pdf\Html2Pdf;
-use Spipu\Html2Pdf\Exception\Html2PdfException;
-use Spipu\Html2Pdf\Exception\ExceptionFormatter;
-
+use App\Http\Controllers\Html2PdfController  as PDF;
 class CartaController extends Controller
 {
     //
@@ -36,9 +32,9 @@ class CartaController extends Controller
             'telefono'=>$reclamo->telefono,
             'numero_reclamo'=>$reclamo->reclamo_numero,
             'saludo'=>$data['saludo'],
-            'parrafo1'=>$data['txt-parrafo1'],
-            'parrafo2'=>$data['txt-parrafo2'],
-            'parrafo3'=>$data['txt-parrafo3'],
+            'parrafo1'=>(isset($data['txt-parrafo1'])?$data['txt-parrafo1']:null),
+            'parrafo2'=>(isset($data['txt-parrafo1'])?$data['txt-parrafo2']:null),
+            'parrafo3'=>(isset($data['txt-parrafo1'])?$data['txt-parrafo3']:null),
             'resultado'=>$data['resultado'],
             'masivo'=>false,
             'descargado'=>false,
@@ -50,6 +46,9 @@ class CartaController extends Controller
             $reclamo->carta_id=$carta->id;*/
             
             //$reclamo->save();
+            $carta= new PDF();
+            $carta->resolucion='NUevo';
+            $carta->create();
             return redirect()->route('reclamos.index');
             
     }
