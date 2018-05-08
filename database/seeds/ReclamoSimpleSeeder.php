@@ -25,7 +25,7 @@ class ReclamoSimpleSeeder extends Seeder
             
             $number=$cd.$nu;
             ReclamoSimple::create([
-            'reclamo_numero'=>$number,
+            'numero_reclamo'=>$number,
             'tipo_reclamo'=>$faker->randomElement(['CALIDAD','COBRO SERVICIO','FALTA ENTREGA: RECIBO DETALLE','INCUMPLIMIENTO','INSTALA, REINSTALA','PORTABILIDAD','TRASLADO DE SERVICIO']),
             'motivo_reclamo'=>$faker->randomElement(['ALTA NUEVA INSTALACIO','BAJA DEL SERVICIO','CALIDAD AVERIA SIN SUSTENTO','CORTE POR DEUDA','DERECHOS RECONOCIDO NORMATIVOS','LUGARES DE PAGO','MIGRACION NO EJECUTADA']),
             'observacion_reclamo'=>$faker->text,

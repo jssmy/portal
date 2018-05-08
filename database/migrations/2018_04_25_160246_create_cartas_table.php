@@ -21,14 +21,23 @@ class CreateCartasTable extends Migration
             $table->string('locacion',50)->nullable();
             $table->string('telefono',9)->nullable();
             $table->string('numero_reclamo')->nullable();
-            $table->text('inico')->nullable();
+            $table->text('inicio')->nullable();
             $table->text('parrafo1')->nullable();
             $table->text('parrafo2')->nullable();
             $table->text('parrafo3')->nullable();
             $table->text('fin')->nullable();
-            $table->boolean('masivo');
+            $table->string('resultado');
             $table->boolean('descargado');
-            $table->integer('resultado_id');
+            $table->integer('resultado_id')->unsigned()->nullable();
+            
+            $table->integer('user_id')->unsigned()->nullable();
+
+            $table->string('file');
+            
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users');
+            
             $table->timestamps();
         });
     }

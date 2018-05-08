@@ -31,11 +31,11 @@
                         <h5><strong>{{ $reclamo->reclamante }}</strong></h5>
                         <h5><strong>{{ $reclamo->direccion_postal }}</strong></h5>
                         <h5><strong>{{ $reclamo->distrito }}, {{ $reclamo->departamento }}</strong></h5>
-                        <h5>Servicio: {{$reclamo->reclamo_numero}}</h5>
-                        <h5>Reclamo: {{$reclamo->reclamo_numero}}</h5>
+                        <h5>Servicio: {{$reclamo->numero_reclamo}}</h5>
+                        <h5>Reclamo: {{$reclamo->numero_reclamo}}</h5>
                         <h5 style="margin-top:4%;">Hola, {{ $reclamo->reclamante }}</h5>
                     </div>
-                </div>
+                </div> 
                 <div class="body-cart">
                     <div class="body-saludo">
                         <p id="p-saludo"></p>
@@ -96,10 +96,11 @@
                         type: 'GET', //this is your method
                         data: null,
                         success: function(response){
+                            
                             var modelo = JSON.parse(response);
-                            $('#txt-parrafo1').attr('disabled',true);
-                            $('#txt-parrafo2').attr('disabled',true);
-                            $('#txt-parrafo3').attr('disabled',true);
+                            $('#txt-parrafo1').attr('readonly',false);
+                            $('#txt-parrafo2').attr('readonly',false);
+                            $('#txt-parrafo3').attr('readonly',false);
                             $("#p-saludo").text(modelo.inicio);
                             $("#saludo").val(modelo.inicio);
                             $("#txt-parrafo1").val(modelo.parrafo1);
@@ -152,7 +153,7 @@
                                     html+='<a style="cursor:pointer;" onclick="get_modelo(';
                                     html+=modelos[key].id;
                                     html+=',';
-                                    html+="'{{$reclamo->reclamo_numero}}'";
+                                    html+="'{{$reclamo->numero_reclamo}}'";
                                     html+=')" >';
                                     html+='<span class="label label-info pull-left">';
                                     html+=modelos[key].cant_parrafo;
@@ -169,7 +170,7 @@
                                 
                                 var message='<div class="alert alert-success alert-dismissible">';    
                                 message+='<a style="cursor:pointer;" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
-                                message+="<strong>MENSAJE!</strong> El reclamo {{ $reclamo->reclamo_numero }} ha sido declarado "+ nombre_resultado;
+                                message+="<strong>MENSAJE!</strong> El reclamo {{ $reclamo->numero_reclamo }} ha sido declarado "+ nombre_resultado;
                                 message+="</div>";
                                 $("#message").html(message);
                            

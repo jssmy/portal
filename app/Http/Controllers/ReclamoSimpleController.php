@@ -18,7 +18,7 @@ class ReclamoSimpleController extends Controller
     {
         
         
-        $reclamos = ReclamoSimple::paginate(15);
+        $reclamos = ReclamoSimple::where('pdf',false)->paginate(15);
         $resultados = Resultado::all();
         foreach($reclamos as $reclamo)
         {
@@ -46,7 +46,7 @@ class ReclamoSimpleController extends Controller
     {
         //date_default_timezone_set('America/Lima');
         setlocale(LC_ALL,'es_E');
-        $reclamo = ReclamoSimple::where('reclamo_numero',$numero)->first();
+        $reclamo = ReclamoSimple::where('numero_reclamo',$numero)->first();
         $dias = array("Domingo",
         "Lunes",
         "Martes",
@@ -67,8 +67,13 @@ class ReclamoSimpleController extends Controller
         "Diciembre");
         $reclamo->respuesta= $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
         $modelos=\DB::table('modelos_cartas')->where('user_id',Auth::user()->id)->get();
+
         //dd($modelos);
         $resultados=Resultado::all();
+        foreach ($resultados as $resultado) {
+            $resultado->cant_modelos=$resultado->modelos->count();
+        }
+        //dd($resultados);
         return view('reclamos.create')
         ->with('reclamo',$reclamo)
         ->with('modelos',$modelos)
@@ -88,7 +93,7 @@ class ReclamoSimpleController extends Controller
     
     public function details($reclamo)
     {
-            $reclamo =  ReclamoSimple::where('reclamo_numero',$reclamo)
+            $reclamo =  ReclamoSimple::where('numero_reclamo',$reclamo)
             ->first();    
             $bandejas = Bandeja::where('user_id',Auth::user()->id)
             ->get();

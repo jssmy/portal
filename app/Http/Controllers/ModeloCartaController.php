@@ -139,7 +139,8 @@ class ModeloCartaController extends Controller
     
     public function api_modelo_reclamo($id_modelo,$cod_reclamo){
         $modelo = ModeloCarta::find($id_modelo);
-        $reclamo= ReclamoSimple::where('reclamo_numero',$cod_reclamo)->first();
+
+        $reclamo= ReclamoSimple::where('numero_reclamo',$cod_reclamo)->first();
         $search=['|_fecha_reclamo_|','|_n_servicio_|','|_cod_reclamo_|','|_reclamante_|'];
         $replace=[$reclamo->fecha_reclamo,$reclamo->reclamo_numero,$reclamo->reclamo_numero,$reclamo->reclamante];
         $modelo->saludo=str_replace($search,$replace,$modelo->saludo);

@@ -14,7 +14,7 @@ class CreateReclamosSimplesTable extends Migration
     {
         Schema::create('reclamos_simples', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('reclamo_numero',11)->unique()->nullable();
+            $table->string('numero_reclamo',11)->unique()->nullable();
             $table->string('tipo_reclamo',40)->nullable();
             $table->string('motivo_reclamo',30)->nullable();
             $table->string('observacion_reclamo')->nullable();
@@ -37,7 +37,7 @@ class CreateReclamosSimplesTable extends Migration
             $table->char('valor',8)->nullable();
             $table->string('socio',20)->nullable();
             $table->mediumInteger('prioridad')->unsigned()->nullable();
-            $table->char('estado_asig',3)->nullable(); // se ha defido 3 estados: pendiente(pen), esperan(esp),liquidado en el portal(LPO)
+            $table->char('estado_asig',3)->nullable();
             $table->boolean('pdf')->nullable()->default(false);
             $table->boolean('excel')->nullable()->default(false);
             $table->integer('user_id')->unsigned()->nullable();

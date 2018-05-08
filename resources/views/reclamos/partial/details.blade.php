@@ -63,7 +63,7 @@
                       <div class="input-group input-group-sm">
                         <input readonly value="Generar carta" type="text" class="form-control">
                             <span class="input-group-btn">
-                              <a href="{{ route('make.letter',$reclamo->reclamo_numero) }}" class="btn btn-info btn-flat">ir</a>
+                              <a href="{{ route('make.letter',$reclamo->numero_reclamo) }}" class="btn btn-info btn-flat">ir</a>
                             </span>
                       </div>
                   </div>

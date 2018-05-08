@@ -27,13 +27,18 @@
                     <span id="asignado" class="label label-danger pull-right">No asignado</span>
                     @endif
                   </span>
-                </a>
+                </a> 
                 <ul class="treeview-menu" style="display: none;">
                   @foreach($resultados as $resultado)
                     <li id="resultado{{$resultado->id}}">
                       <a style="cursor:pointer;"  onclick="get_list_modelo('{{ $resultado->id }}','{{ $resultado->nombre  }}')"  >
-                          <i id="chek-{{$resultado->id}}"  class="fa fa-circle-o"></i>
+                          <i id="chek-{{$resultado->id}}"  class="fa fa-circle-o pull-left"></i>
                           {{ $resultado->nombre  }}
+                          @if($resultado->cant_modelos>0)
+                            <span style="margin-top:-1.7em;" class="label label-warning pull-right">{{ $resultado->cant_modelos }}</span>
+                          @endif
+
+
                         </a>
                     </li>
                   @endforeach
